@@ -18,7 +18,7 @@ export class HttpService {
     }
   }
 
-  async getById<T>(endpoint: string, id: number): Promise<T> {
+  async getById<T>(endpoint: string, id: number | string): Promise<T> {
     return this.get<T>(`${endpoint}/${id}`);
   }
 

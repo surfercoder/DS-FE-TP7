@@ -2,6 +2,8 @@ import { productService } from './services/product-service.js';
 import type { Product } from './types/product.js';
 import { simpsonsService } from './services/simpsons-service.js';
 import type { Character } from './types/character.ts';
+import { pokemonService } from './services/pokemon-service.js';
+import type { Pokemon } from './types/pokemon.js';
 
 async function mostrarProductos(): Promise<void> {
   try {
@@ -64,7 +66,24 @@ async function mostrarPersonajes(): Promise<void> {
   }
 }
 
+async function mostrarPokemon(nombre: string): Promise<void> {
+  try {
+
+    const pokemon: Pokemon = await pokemonService.getPokemonByName(nombre);
+
+    console.log(`
+ ID: ${pokemon.id}
+ Nombre: ${pokemon.name}
+ Peso: ${pokemon.weight}
+`);
+
+  } catch (error) {
+    console.error('Error al cargar pokemon:', error);
+  }
+}
+
 // Ejecutar
 // mostrarProductos();
 // mostrarProductoIndividual(1);
-mostrarPersonajes();
+// mostrarPersonajes();
+mostrarPokemon('pikachu');
